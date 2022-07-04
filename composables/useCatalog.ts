@@ -1,26 +1,18 @@
 import {ref} from 'vue'
+import { useCustomFetch } from './useCustomFetch';
 
 const useCatalog = () => {
-  const baseUrl = ref('https://apidojo-hm-hennes-mauritz-v1.p.rapidapi.com')
   const catalog = ref([])
   const pagination = ref(null)
 
   const getCatalog = (params: any) => {
-    return useFetch(`${baseUrl.value}/products/list`, {
-      headers: {
-        'X-RapidAPI-Key' : '8453ad2fa0msh21875f1cfb62ef9p1d1a0bjsn7d58b800df3b',
-        'X-RapidAPI-Host' : 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      },
+    return useCustomFetch('/products/list', {
       params: params
     })
   }
 
   const getCategory = () => {
-    return useFetch(`${baseUrl.value}/categories/list`, {
-      headers: {
-        'X-RapidAPI-Key' : '8453ad2fa0msh21875f1cfb62ef9p1d1a0bjsn7d58b800df3b',
-        'X-RapidAPI-Host' : 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      },
+    return useCustomFetch('/categories/list', {
       params: {
         lang: 'en', country: 'us'
       }
@@ -28,11 +20,7 @@ const useCatalog = () => {
   }
 
   const getCatalogDetails = (productCode: string) => {
-    return useFetch(`${baseUrl.value}/products/detail`, {
-      headers: {
-        'X-RapidAPI-Key' : '8453ad2fa0msh21875f1cfb62ef9p1d1a0bjsn7d58b800df3b',
-        'X-RapidAPI-Host' : 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
-      },
+    return useCustomFetch('/products/detail', {
       params: {
         lang: 'en', productcode: productCode, country: 'us'
       }
