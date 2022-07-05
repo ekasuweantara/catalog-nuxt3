@@ -23,6 +23,6 @@
 .spinner-content {
   text-align: center;
   margin: auto;
-  margin-top: 40%;
+  margin-top: 20%;
 }
 </style>
