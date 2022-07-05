@@ -6,9 +6,11 @@
   import "swiper/css/free-mode";
   import "swiper/css/pagination";
   import { useCart } from '~/stores/cart';
+  import { useToast } from '~/stores/toast';
 
   const router = useRoute()
   const cart = useCart()
+  const toast = useToast()
   const {getCatalogDetails, getCatalogFilter, catalog} = useCatalog();
   const {data} = await getCatalogDetails(router.params.id);
   const product = ref(data.value?.product)
@@ -48,6 +50,11 @@
       size: size.value,
       currency: product.value?.whitePrice?.currency,
       price: product.value?.whitePrice?.price
+    })
+    toast.set({
+      isShow: true,
+      type: 'success',
+      msg: `${product.value?.name} added successfully`
     })
   }
 

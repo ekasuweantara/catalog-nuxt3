@@ -1,8 +1,10 @@
 import { useSpinner } from '~/stores/spinner';
+import { useToast } from '~/stores/toast';
 
 export const useCustomFetch = (url: string, options?: FetchOptions) => {
   const config = useRuntimeConfig();
   const spinner = useSpinner()
+  const toast = useToast()
 
   return useFetch(`${config.public.apiBase}${url}`, {
     headers: {
@@ -15,6 +17,11 @@ export const useCustomFetch = (url: string, options?: FetchOptions) => {
     },
     async onResponseError({ request, response, options }) {
       spinner.set(false)
+      toast.set({
+        isShow: true,
+        type: 'error',
+        msg: 'Internal service error'
+      })
     },
 
     async onRequest({ request, options }) {

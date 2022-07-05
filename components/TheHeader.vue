@@ -2,13 +2,24 @@
   import IconShoppingCart from '~icons/mdi/shopping-cart'
   import IconTrash from '~icons/mdi/trash'
   import { useCart } from '~/stores/cart'
+  import { useToast } from '~/stores/toast';
   import {ref} from 'vue'
 
   const isShow = ref(false)
   const cart = useCart()
+  const toast = useToast()
 
   const setIsShow = () => {
     isShow.value = !isShow.value
+  }
+
+  const deleteCart = (code: string) => {
+    cart.delete(code)
+    toast.set({
+      isShow: true,
+      type: 'success',
+      msg: 'Item deleted successfully'
+    })
   }
 </script>
 
@@ -29,7 +40,7 @@
     <div class="main-nav" v-show="isShow && cart.data && cart.data.length > 0">
       <div>
         <div v-for="item in cart.data" class="d-flex flex-wrap">
-            {{`${item.name} - ${item.currency} ${item.price}`}} <span class="remove-catalog cursor-pointer" @click="cart.delete(item.code)"><icon-trash style="font-size: 15px; color: red"/> </span>
+            {{`${item.name} - ${item.currency} ${item.price}`}} <span class="remove-catalog cursor-pointer" @click="deleteCart(item.code)"><icon-trash style="font-size: 15px; color: red"/> </span>
           <hr>
         </div>
       </div>

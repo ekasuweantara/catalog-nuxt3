@@ -27,6 +27,7 @@ defineProps<{
   background-color: #fff;
   width: 100%;
   max-width: 180px;
+  padding: 12px 0px;
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
