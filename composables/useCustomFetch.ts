@@ -8,7 +8,7 @@ export const useCustomFetch = (url: string, options?: FetchOptions) => {
 
   return useFetch(`${config.public.apiBase}${url}`, {
     headers: {
-      'X-RapidAPI-Key' : '8453ad2fa0msh21875f1cfb62ef9p1d1a0bjsn7d58b800df3b',
+      'X-RapidAPI-Key' : 'fecd2b4d4cmsh0c44b4c1a8ce2acp10b7dfjsn4d0a378832ac',
       'X-RapidAPI-Host' : 'apidojo-hm-hennes-mauritz-v1.p.rapidapi.com'
     },
     ...options,
